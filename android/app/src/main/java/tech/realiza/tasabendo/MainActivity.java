@@ -1,0 +1,6 @@
+package tech.realiza.efato;
+
+import io.flutter.embedding.android.FlutterActivity;
+
+public class MainActivity extends FlutterActivity {
+}

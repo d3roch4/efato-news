@@ -1,0 +1,74 @@
+name: efato
+description: Portal de nóticias que te conta tudo.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 0.0.1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations: # Add this line
+    sdk: flutter         # Add this line
+  get:
+  firebase_core: ^1.0.4
+  cloud_firestore: ^2.2.1
+  cloud_functions: ^1.0.5
+  firebase_storage: ^8.0.6
+  firebase_auth: ^1.1.1
+  flutter_auth_ui: ^2.1.0
+  country_code_picker: ^2.0.1
+  paginate_firestore: ^1.0.0
+  date_field: ^2.0.1
+  flutter_speed_dial: ^3.0.5
+  flutter_colorpicker: 0.4.0
+  image_picker: ^0.8.0
+  cached_network_image: ^3.0.0
+  cross_file: ^0.3.1
+  chips_input: ^0.0.6
+  currency_text_input_formatter: ^2.0.1
+  brasil_fields: ^1.1.2
+  flutter_form_builder: ^6.0.1
+  flutter_staggered_grid_view: ^0.4.0
+  zefyrka: ^1.0.3
+  geoflutterfire2: ^2.3.7
+  google_maps_flutter: ^2.0.6
+  location: ^4.2.2
+  share_plus: ^2.1.4
+  simple_tooltip: ^0.1.16
+  responsive_scaffold:
+    git: https://github.com/Gebes/responsive_scaffold.git
+  endereco_formfield:
+    path: ../endereco_formfield
+
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.9.0
+  flutter_native_splash: ^1.1.8
+  flutter_test:
+    sdk: flutter
+
+flutter_native_splash:
+  color: "#ffffff"
+  color_dark: "#9c9c9c"
+  image: assets/label.png
+  fullscreen: true
+
+flutter_icons:
+  android: "ic_launcher_icon"
+  ios: false
+  image_path: "assets/icon.png"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icon.png
+
