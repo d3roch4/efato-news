@@ -18,8 +18,8 @@ class GridViewNoticias extends StatelessWidget{
     return StaggeredGridView.extentBuilder(
       maxCrossAxisExtent: 300,
       staggeredTileBuilder: (int index) =>StaggeredTile.fit(1),
-      mainAxisSpacing: kPadding,
-      crossAxisSpacing: kPadding,
+      mainAxisSpacing: kPadding/2,
+      crossAxisSpacing: kPadding/2,
       itemCount: noticias.length,
       controller: scrollController,
       padding: padding,

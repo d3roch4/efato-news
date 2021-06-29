@@ -65,12 +65,13 @@ class RichTextEdit extends StatelessWidget{
         controller: _controller,
         focusNode: focusNode,
         padding: this.padding,
-        readOnly: true,
-        showCursor: false,
+        readOnly: readOnly,
+        showCursor: !readOnly,
         enableInteractiveSelection: true,
         scrollController: this.scrollController,
         scrollable: this.scrollable,
         embedBuilder: _embedBuilder,
+        // expands: true,
       );
     return ZefyrField(
       scrollable: this.scrollable,

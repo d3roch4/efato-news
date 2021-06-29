@@ -35,7 +35,7 @@ class CriarEditarNoticiaPage extends StatelessWidget{
       child: Obx(()=> Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: ctrl.noticia.value==null? Text('Cadastro de notícia'): RichTextEdit.toolbar(ctrl.zefyrController,  ctrl.dirUploadImagens),
+          title: Text('Cadastro de notícia'),
           actions: [PopupMenuButton<int>(
             itemBuilder: (c)=> [
               PopupMenuItem(
@@ -50,50 +50,67 @@ class CriarEditarNoticiaPage extends StatelessWidget{
         ),
         body:  ctrl.noticia.value==null? carregando: Form(
           key: formKey,
-          child: ListView(
-            controller: scroolCtrl,
-            padding: ctrl.focusConteudo.hasFocus? EdgeInsets.fromLTRB(kPadding, kPadding, kPadding, 56): EdgeInsets.all(kPadding),
-            children: [
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Titulo', hintText: 'Pequeno titulo da notícia'),
-                controller: TextEditingController(text: ctrl.noticia.value.titulo),
-                onChanged: (val)=> ctrl.salvar(() => ctrl.noticia.value.titulo=val, ['titulo']),
-                onEditingComplete: ()=> nextFocus(),
-                validator: (val)=> val.isEmpty? 'É necessario informar um titulo': null,
-              ),
-              EnderecoFormField(
-                inputDecoration: InputDecoration(labelText: 'Local do ocorrido', hintText: 'Clique aqui para escolher o local'),
-                initialValue: ctrl.noticia.value.local,
-                onChanged: ctrl.mudarLocalizacao,
-                autdoDetectar: true,
-                validator: (val)=> val?.latitude == null? 'Selecione uma localização': null,
-                // onEditingComplete: ()=> nextFocus(),
-              ),
-              RichTextEdit(
-                ctrl.zefyrController,
-                scrollController: scroolCtrl,
-                scrollable: false,
-                decoration: InputDecoration(labelText: 'Conteudo', hintText: 'Conte em detalhes o fato.'),
-                focusNode: ctrl.focusConteudo,
-                onChange: ctrl.atualizarConteudo,
-              ),
-              FutureBuilder<List<Selo>>(
-                future: ctrl.selos,
-                builder: (c, snap)=>snap.data==null? carregando: DropdownButtonFormField(
-                  decoration: InputDecoration(labelText: 'Selo', hintText: 'Selecione um selo adequado ao fato relatado'),
-                  onChanged: ctrl.mudarSelo,
-                  value: snap.data.contains(ctrl.noticia.value.selo)? ctrl.noticia.value.selo: null,
-                  items: snap.data.map((e) => DropdownMenuItem(
-                    child: Chip(
-                      avatar: CachedNetworkImage(imageUrl: e.imagem),
-                      label: Text(e.nome),
+          child: Stack(children: [
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+              child: ListView(
+                  padding: ctrl.focusConteudo.hasFocus? EdgeInsets.fromLTRB(kPadding, kPadding, kPadding, 56): EdgeInsets.all(kPadding),
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(labelText: 'Titulo', hintText: 'Pequeno titulo da notícia'),
+                      controller: TextEditingController(text: ctrl.noticia.value.titulo),
+                      onChanged: (val)=> ctrl.salvar(() => ctrl.noticia.value.titulo=val, ['titulo']),
+                      onEditingComplete: ()=> nextFocus(),
+                      validator: (val)=> val.isEmpty? 'É necessario informar um titulo': null,
                     ),
-                    value: e,
-                  )).toList(),
-                ),
-              )
-            ]
-          ),
+                    EnderecoFormField(
+                      inputDecoration: InputDecoration(labelText: 'Local do ocorrido', hintText: 'Clique aqui para escolher o local'),
+                      initialValue: ctrl.noticia.value.local,
+                      onChanged: ctrl.mudarLocalizacao,
+                      autdoDetectar: true,
+                      validator: (val)=> val?.latitude == null? 'Selecione uma localização': null,
+                      // onEditingComplete: ()=> nextFocus(),
+                    ),
+                    FutureBuilder<List<Selo>>(
+                      future: ctrl.selos,
+                      builder: (c, snap)=>snap.data==null? carregando: DropdownButtonFormField(
+                        decoration: InputDecoration(labelText: 'Selo', hintText: 'Selecione um selo adequado ao fato relatado'),
+                        onChanged: ctrl.mudarSelo,
+                        value: snap.data.contains(ctrl.noticia.value.selo)? ctrl.noticia.value.selo: null,
+                        items: snap.data.map((e) => DropdownMenuItem(
+                          child: Chip(
+                            avatar: CachedNetworkImage(imageUrl: e.imagem),
+                            label: Text(e.nome),
+                          ),
+                          value: e,
+                        )).toList(),
+                      ),
+                    ),
+                    RichTextEdit(
+                      ctrl.zefyrController,
+                      scrollController: scroolCtrl,
+                      scrollable: false,
+                      decoration: InputDecoration(labelText: 'Conteudo', hintText: 'Conte em detalhes o fato.'),
+                      focusNode: ctrl.focusConteudo,
+                      onChange: ctrl.atualizarConteudo,
+                    ),
+                    SizedBox(height: 56),
+                  ]
+              ),
+            ),
+            Positioned(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+              left: 0,
+              right: 0,
+              child: Container(
+                color: Get.theme.cardColor,
+                child: RichTextEdit.toolbar(ctrl.zefyrController,  ctrl.dirUploadImagens),
+              ),
+            )
+          ]),
         ),
       )),
     );

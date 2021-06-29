@@ -50,6 +50,21 @@ class MainApp extends StatelessWidget {
     var temaClaro = ThemeData(
         brightness: Brightness.light,
         primaryColor: Colors.white,
+        primarySwatch: MaterialColor(
+          0xFFFFFFFF,
+          const <int, Color>{
+            50: const Color(0xFFFFFFFF),
+            100: const Color(0xFFFFFFFF),
+            200: const Color(0xFFFFFFFF),
+            300: const Color(0xFFFFFFFF),
+            400: const Color(0xFFFFFFFF),
+            500: const Color(0xFFFFFFFF),
+            600: const Color(0xFFFFFFFF),
+            700: const Color(0xFFFFFFFF),
+            800: const Color(0xFFFFFFFF),
+            900: const Color(0xFFFFFFFF),
+          },
+        ),
         buttonTheme: buttonTheme,
         outlinedButtonTheme: outlinedButtonTheme,
         elevatedButtonTheme: elevetedButtonTheme,
@@ -61,7 +76,7 @@ class MainApp extends StatelessWidget {
     var temaEscuro = ThemeData(
       brightness: Brightness.dark,
       primarySwatch: Colors.red,
-      primaryColor: Colors.red,
+      // primaryColor: Colors.red,
       accentColor: Colors.redAccent,
       scaffoldBackgroundColor: Colors.black,
       bottomAppBarTheme: bottomAppBarTheme.copyWith(color: Colors.white10),

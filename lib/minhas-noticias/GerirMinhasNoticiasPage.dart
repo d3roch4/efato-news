@@ -25,7 +25,11 @@ class GerirMinhasNoticiasPage extends IHomePage {
         if(snap.connectionState==ConnectionState.waiting)
           return carregando;
         var lista = snap.data;
-        return GridViewNoticias(noticias: lista, onTap: ctrl.editarNoticia);
+        return GridViewNoticias(
+          noticias: lista, 
+          onTap: ctrl.editarNoticia,
+          padding: EdgeInsets.all(kPadding),
+        );
       },
     );
   }

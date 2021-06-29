@@ -3,6 +3,9 @@
    <application
         android:label="efato"
         android:icon="@mipmap/ic_launcher">
+       <meta-data
+           android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyD4Ape-syn0z-ZT3lMrA-xe7ZIm_cnoZw4" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

@@ -28,9 +28,12 @@ class HomePage extends IHomePage{
         return Stack(children: [
           GoogleMap(
             mapType: MapType.terrain,
+            myLocationEnabled: true,
+            myLocationButtonEnabled: false,
+            liteModeEnabled: true,
             // markers: marcadores,
             gestureRecognizers: Set(),
-            scrollGesturesEnabled: false,
+            // scrollGesturesEnabled: false,
             initialCameraPosition: CameraPosition(target: LatLng(endereco.latitude, endereco.longitude), zoom: 15),
             onMapCreated: (c)=> ctrl.mapCtrl = c,
           ),

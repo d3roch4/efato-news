@@ -1,70 +1,41 @@
 {
   "project_info": {
-    "project_number": "907876916551",
-    "project_id": "realiza-entregas",
-    "storage_bucket": "realiza-entregas.appspot.com"
+    "project_number": "640011263533",
+    "project_id": "efato-news",
+    "storage_bucket": "efato-news.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:907876916551:android:60e097df3753b34ee48062",
-        "android_client_info": {
-          "package_name": "tech.realiza.entregas"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "907876916551-s5hsotqi4resl7hbgp8mbcaj2g8plq93.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "tech.realiza.entregas",
-            "certificate_hash": "ab499dbe469cde793bf1457097b09adbed857507"
-          }
-        },
-        {
-          "client_id": "907876916551-skob8u0agkv9nq0k17jat17cjlsha163.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBs9qXajHj1NLqmsf9Y-mgdvuBbzVM0RME"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "907876916551-skob8u0agkv9nq0k17jat17cjlsha163.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:907876916551:android:8814286ef5ac99dfe48062",
+        "mobilesdk_app_id": "1:640011263533:android:65e407568bbab97da222a4",
         "android_client_info": {
           "package_name": "tech.realiza.efato"
         }
       },
       "oauth_client": [
         {
-          "client_id": "907876916551-skob8u0agkv9nq0k17jat17cjlsha163.apps.googleusercontent.com",
+          "client_id": "640011263533-8ujq0ra6hochb60tcoqlqlrvvqcfabuk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tech.realiza.efato",
+            "certificate_hash": "ab499dbe469cde793bf1457097b09adbed857507"
+          }
+        },
+        {
+          "client_id": "640011263533-8th5kji140h6113iqrelstsutk1tapp1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBs9qXajHj1NLqmsf9Y-mgdvuBbzVM0RME"
+          "current_key": "AIzaSyA4maxqXxE5UJwB6vGSeROuKBF8XgnZVRU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "907876916551-skob8u0agkv9nq0k17jat17cjlsha163.apps.googleusercontent.com",
+              "client_id": "640011263533-8th5kji140h6113iqrelstsutk1tapp1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

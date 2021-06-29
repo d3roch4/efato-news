@@ -136,6 +136,8 @@ class VisualizarNoticiaCtrl extends GetxController{
   }
 
   Future<void> compartilhar() async {
+    return Share.share('${zefyrCtrl.document.toPlainText()} https://efato-news.web.app/n/${noticia.value.id}', subject: noticia.value.titulo);
+
     var resp = await http.get(Uri.parse(noticia.value.imagem));
     if(resp.statusCode == 200){
       var file = XFile.fromData(resp.bodyBytes);
