@@ -22,26 +22,40 @@ export const alterarSelo = functions.region('southamerica-east1').firestore
 .document('avaliacoes/{noticia}')
 .onWrite(async (change, context) => {
     let aval = change.after.data() as any;
-    console.log('SETANDO SELO DA NOTICIA: '+aval);
+    let noticiaId = aval.noticia;
+    console.log('SETANDO SELO DA NOTICIA: '+noticiaId);
     if(!aval) return;
 
-    let noticiaId = aval.noticia;
     var avaliacoes = await admin.firestore().collection('avaliacoes')
         .where('noticia', '==', noticiaId)
         .get();
     let contador: Contador ={};
-    let max: string = '', maxi=0;
+    let maisVoltos: string = '', maxi=0;
     for(let k of avaliacoes.docs) {
         let selo = k.data()['selo']['nome'] as string;
         let cont = contador[selo];
-        if(cont) cont++; else cont=1;
-        if(maxi < cont) { max=selo; maxi=cont }
-    }
+        if(cont) 
+            cont=cont+1; 
+        else 
+            cont=1;
 
-    console.log('SELO COM MAIS VOTOS: '+max);
-    var selo = await admin.firestore().collection('selos').doc(max).get();
-    if(selo.exists)
+        contador[selo] = cont;
+
+        if(maxi < cont) { 
+            maisVoltos=selo; 
+            maxi=cont 
+        }
+    }
+    
+    Object.entries(contador).forEach(
+      ([key, value]) => console.log(key, value)
+    );
+    console.log('SELO VENCEDOR: '+maisVoltos+' com '+maxi+' votos');
+    var selo = await admin.firestore().collection('selos').doc(maisVoltos).get();
+    if(selo.exists){
         admin.firestore().collection('noticias').doc(noticiaId).update({'selo': selo.data()});
+    }else
+        console.error('O selo vencedor não foi encontrado');
 });
 
 export const primeiroAdmin = functions.region('southamerica-east1').auth.user().onCreate(async (user) => {

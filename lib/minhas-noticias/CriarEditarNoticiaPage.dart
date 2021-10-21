@@ -74,21 +74,21 @@ class CriarEditarNoticiaPage extends StatelessWidget{
                       validator: (val)=> val?.latitude == null? 'Selecione uma localização': null,
                       // onEditingComplete: ()=> nextFocus(),
                     ),
-                    FutureBuilder<List<Selo>>(
-                      future: ctrl.selos,
-                      builder: (c, snap)=>snap.data==null? carregando: DropdownButtonFormField(
-                        decoration: InputDecoration(labelText: 'Selo', hintText: 'Selecione um selo adequado ao fato relatado'),
-                        onChanged: ctrl.mudarSelo,
-                        value: snap.data.contains(ctrl.noticia.value.selo)? ctrl.noticia.value.selo: null,
-                        items: snap.data.map((e) => DropdownMenuItem(
-                          child: Chip(
-                            avatar: CachedNetworkImage(imageUrl: e.imagem),
-                            label: Text(e.nome),
-                          ),
-                          value: e,
-                        )).toList(),
-                      ),
-                    ),
+                    // FutureBuilder<List<Selo>>(
+                    //   future: ctrl.selos,
+                    //   builder: (c, snap)=>snap.data==null? carregando: DropdownButtonFormField(
+                    //     decoration: InputDecoration(labelText: 'Selo', hintText: 'Selecione um selo adequado ao fato relatado'),
+                    //     onChanged: ctrl.mudarSelo,
+                    //     value: snap.data.contains(ctrl.noticia.value.selo)? ctrl.noticia.value.selo: null,
+                    //     items: snap.data.map((e) => DropdownMenuItem(
+                    //       child: Chip(
+                    //         avatar: CachedNetworkImage(imageUrl: e.imagem),
+                    //         label: Text(e.nome),
+                    //       ),
+                    //       value: e,
+                    //     )).toList(),
+                    //   ),
+                    // ),
                     RichTextEdit(
                       ctrl.zefyrController,
                       scrollController: scroolCtrl,

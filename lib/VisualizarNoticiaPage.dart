@@ -28,6 +28,7 @@ class VisualizarNoticiaPage extends StatelessWidget{
       width: 200,
       child: PaginateFirestore(
         isLive: true,
+        padding: EdgeInsets.zero,
         itemBuilderType: PaginateBuilderType.listView,
         query: ctrl.avaliacoes(),
         itemBuilder: (i, c, doc){
@@ -71,6 +72,13 @@ class VisualizarNoticiaPage extends StatelessWidget{
           padding: EdgeInsets.fromLTRB(kPadding, kPadding, kPadding, 100),
           scrollable: true,
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Icon(Icons.person),
+            Text(ctrl.noticia.value.autor.nome)
+          ],
+        ),
         if(ctrl.noticia.value.selo != null)
         Positioned(
           top: 8,
@@ -80,9 +88,11 @@ class VisualizarNoticiaPage extends StatelessWidget{
             child: Obx(()=> GestureDetector(
               child: SimpleTooltip(
                 tooltipDirection: TooltipDirection.left,
-                animationDuration: Duration(milliseconds: 300),
+                ballonPadding: EdgeInsets.zero,
+                animationDuration: Duration(milliseconds: 400),
                 child: CachedNetworkImage(imageUrl: ctrl.noticia.value.selo.imagem, height: 50),
                 show: ctrl.mostrarAvaliacoes.value,
+                hideOnTooltipTap: true,
                 content: Material(child: avaliacoesLista),
               ),
               onTap: ()=>ctrl.mostrarAvaliacoes.toggle(),

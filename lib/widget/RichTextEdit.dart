@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:efato/utils.dart';
 import 'package:zefyrka/zefyrka.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RichTextEdit extends StatelessWidget{
   ZefyrController _controller;
@@ -66,11 +67,12 @@ class RichTextEdit extends StatelessWidget{
         focusNode: focusNode,
         padding: this.padding,
         readOnly: readOnly,
-        showCursor: !readOnly,
+        showCursor: true,
         enableInteractiveSelection: true,
         scrollController: this.scrollController,
         scrollable: this.scrollable,
         embedBuilder: _embedBuilder,
+        onLaunchUrl: launch,
         // expands: true,
       );
     return ZefyrField(
@@ -79,8 +81,9 @@ class RichTextEdit extends StatelessWidget{
       decoration: decoration,
       controller: _controller,
       focusNode: focusNode,
+      showCursor: true,
       embedBuilder: _embedBuilder,
-      // toolbar: toolbar(_controller),
+      onLaunchUrl: launch,
     );
   }
 
@@ -109,21 +112,28 @@ class RichTextEdit extends StatelessWidget{
         if(snap.connectionState==ConnectionState.waiting)
           CircularProgressIndicator(),
         if(snap.data != null) for(var item in snap.data.items)
-          getBotaoImagemFirestore(item.getDownloadURL()),
+          getBotaoImagemFirestore(item, dirUpload),
       ])),
     ), backgroundColor: Get.theme.cardColor);
 
     return url;
   }
 
-  static Widget getBotaoImagemFirestore(Future<String> url){
+  static Widget getBotaoImagemFirestore(Reference imagem, String dirUpload){
     return FutureBuilder<String>(
-        future: url,
+        future: imagem.getDownloadURL(),
         builder: (c, snap)=> snap.data==null?
         CircularProgressIndicator():
         IconButton(
           iconSize: 100,
-          icon: CachedNetworkImage(imageUrl: snap.data),
+          icon: Stack(children: [
+            CachedNetworkImage(imageUrl: snap.data),
+            IconButton(onPressed:() async {
+              await imagem.delete().catchError(erroSnack);
+              Get.back();
+              selecionarImagem(dirUpload);
+            }, icon: Icon(Icons.delete_forever, color: Colors.red), iconSize: 32)
+          ]),
           onPressed: ()=> Get.back(result: snap.data),
         )
     );

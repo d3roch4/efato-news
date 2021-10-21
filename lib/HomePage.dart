@@ -15,6 +15,14 @@ import 'LoginPage.dart';
 class HomePage extends IHomePage{
   var ctrl = InicioCtrl();
 
+  get nenhumaNoticiaEncontrada => Padding(
+    padding: EdgeInsets.all(kPadding),
+    child: Column(children: [
+      Icon(Icons.emoji_emotions_outlined, size: 72),
+      Text(" Seja o primeiro a compartilhar um relato no portal, clique no 'menu => Minhas notícias' e descreva algo que sua cidade precisa saber!\n Seus dados pessoasi não são divulgados e a própria comunidade fará a avaliação dos fatos.\n Seja bem-vindo(a)!!")
+    ]),
+  );
+
   @override
   Widget body() {
     return StreamBuilder(
@@ -30,10 +38,7 @@ class HomePage extends IHomePage{
             mapType: MapType.terrain,
             myLocationEnabled: true,
             myLocationButtonEnabled: false,
-            liteModeEnabled: true,
-            // markers: marcadores,
-            gestureRecognizers: Set(),
-            // scrollGesturesEnabled: false,
+            scrollGesturesEnabled: !GetPlatform.isWeb,
             initialCameraPosition: CameraPosition(target: LatLng(endereco.latitude, endereco.longitude), zoom: 15),
             onMapCreated: (c)=> ctrl.mapCtrl = c,
           ),
@@ -52,12 +57,15 @@ class HomePage extends IHomePage{
             minChildSize: 0.27,
             maxChildSize: 1,
             builder: (BuildContext context, myscrollController) {
-              return Card(margin: EdgeInsets.zero, child: GridViewNoticias(
-                scrollController: myscrollController,
-                noticias: ctrl.noticias.value,
-                onTap: ctrl.abrirNoticia,
-                padding: EdgeInsets.all(kPadding),
-              ));
+              return Card(
+                margin: EdgeInsets.zero,
+                child: ctrl.noticias.value.isEmpty? nenhumaNoticiaEncontrada: GridViewNoticias(
+                  scrollController: myscrollController,
+                  noticias: ctrl.noticias.value,
+                  onTap: ctrl.abrirNoticia,
+                  padding: EdgeInsets.all(kPadding),
+                )
+              );
             },
           )
           ),

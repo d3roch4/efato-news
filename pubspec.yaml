@@ -18,15 +18,15 @@ dependencies:
   get:
   firebase_core: ^1.0.4
   cloud_firestore: ^2.2.1
-  cloud_functions: ^1.0.5
-  firebase_storage: ^8.0.6
-  firebase_auth: ^1.1.1
-  flutter_auth_ui: ^2.1.0
+  cloud_functions: ^3.0.4
+  firebase_storage: ^10.0.5
+  firebase_auth: ^3.1.3
+  flutter_auth_ui: ^2.2.0
   country_code_picker: ^2.0.1
   paginate_firestore: ^1.0.0
   date_field: ^2.0.1
-  flutter_speed_dial: ^3.0.5
-  flutter_colorpicker: 0.4.0
+  flutter_speed_dial: ^4.4.0+2
+  flutter_colorpicker: ^0.6.0
   image_picker: ^0.8.0
   cached_network_image: ^3.0.0
   cross_file: ^0.3.1
@@ -38,9 +38,11 @@ dependencies:
   zefyrka: ^1.0.3
   geoflutterfire2: ^2.3.7
   google_maps_flutter: ^2.0.6
+  google_maps_flutter_web:
   location: ^4.2.2
-  share_plus: ^2.1.4
-  simple_tooltip: ^0.1.16
+  share_plus: ^3.0.4
+  simple_tooltip: ^1.0.0
+  url_launcher: ^6.0.8
   responsive_scaffold:
     git: https://github.com/Gebes/responsive_scaffold.git
   endereco_formfield:

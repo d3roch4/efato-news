@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:efato/HomePage.dart';
 import 'package:efato/DadosAcessoEditarPage.dart';
 import 'package:efato/VisualizarNoticiaPage.dart';
@@ -50,21 +52,7 @@ class MainApp extends StatelessWidget {
     var temaClaro = ThemeData(
         brightness: Brightness.light,
         primaryColor: Colors.white,
-        primarySwatch: MaterialColor(
-          0xFFFFFFFF,
-          const <int, Color>{
-            50: const Color(0xFFFFFFFF),
-            100: const Color(0xFFFFFFFF),
-            200: const Color(0xFFFFFFFF),
-            300: const Color(0xFFFFFFFF),
-            400: const Color(0xFFFFFFFF),
-            500: const Color(0xFFFFFFFF),
-            600: const Color(0xFFFFFFFF),
-            700: const Color(0xFFFFFFFF),
-            800: const Color(0xFFFFFFFF),
-            900: const Color(0xFFFFFFFF),
-          },
-        ),
+        accentColor: Colors.blue,
         buttonTheme: buttonTheme,
         outlinedButtonTheme: outlinedButtonTheme,
         elevatedButtonTheme: elevetedButtonTheme,
@@ -92,6 +80,7 @@ class MainApp extends StatelessWidget {
       theme: temaClaro,
       darkTheme: temaEscuro,
       debugShowCheckedModeBanner: false,
+      scrollBehavior: MyCustomScrollBehavior(),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -189,4 +178,13 @@ class _ContadorPageState extends State<ContadorPage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+  };
 }
