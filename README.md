@@ -1,8 +1,13 @@
-# efato
+# e Fato
 
 Portal de nóticias que te conta tudo.
 
+## Descrição
 Um blog de noticias regionais, em que qualquer pessoa pode colocar novas noticias e outras pessoas podem reagir atribuindo um selo de qualidade aquela  notícia, as noticias que aparecem aos leitores são sempre as que estão na região do endereço selecionado ou que foi detectado ao carregar o app.
+
+### Caracteristicas
+- Firebase como backend
+- Flutter no frontend
 
 ## Build && Run
 
